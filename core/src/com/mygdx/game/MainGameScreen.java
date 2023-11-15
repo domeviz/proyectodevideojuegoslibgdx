@@ -38,10 +38,12 @@ public class MainGameScreen extends BaseScreen{
     }
 
     private void comprobarColisiones(){
-        if(jugador.getX()+jugador.getWidth()>roca.getX()){
+        if(jugador.isAlive() && jugador.getX()+jugador.getWidth()>roca.getX()){
             System.out.println("Colision Detectada");
+            jugador.setAlive(false);
         }
     }
+
     @Override
     public void hide() {
         stage.dispose();

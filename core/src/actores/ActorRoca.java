@@ -1,4 +1,5 @@
 package actores;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -8,6 +9,7 @@ public class ActorRoca extends Actor {
 
     public ActorRoca(Texture textureRoca) {
         this.textureRoca = textureRoca;
+        setSize(textureRoca.getWidth(),textureRoca.getHeight());
     }
 
     @Override
