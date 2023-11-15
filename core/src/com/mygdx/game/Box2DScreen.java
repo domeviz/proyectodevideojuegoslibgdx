@@ -34,12 +34,17 @@ public class Box2DScreen extends BaseScreen{
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(Gdx.input.justTouched() &&colisionDetectada==false){
-            saltar();
 
-        }
         float velocidadY=body.getLinearVelocity().y;
         body.setLinearVelocity(5,velocidadY);
+
+        if(Gdx.input.justTouched() &&colisionDetectada==false){
+            saltar();
+        }
+
+        if(colisionDetectada==true){
+            body.setLinearVelocity(0,0);
+        }
 
         world.step(delta,6,2);
         camera.update();
@@ -60,6 +65,10 @@ public class Box2DScreen extends BaseScreen{
             public void beginContact(Contact contact) {
                 Fixture fixtureA=contact.getFixtureA();
                 Fixture fixtureB=contact.getFixtureB();
+
+                if(fixtureA==fixture && fixtureB==rocaFixture){
+                    colisionDetectada=true;
+                }
 
                 if(fixtureB==fixture && fixtureA==rocaFixture){
                     colisionDetectada=true;
