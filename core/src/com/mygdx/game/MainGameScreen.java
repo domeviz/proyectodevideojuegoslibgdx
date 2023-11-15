@@ -41,6 +41,7 @@ public class MainGameScreen extends BaseScreen{
         if(jugador.isAlive() && jugador.getX()+jugador.getWidth()>roca.getX()){
             System.out.println("Colision Detectada");
             jugador.setAlive(false);
+            roca.setAlive(false);
         }
     }
 

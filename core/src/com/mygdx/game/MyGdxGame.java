@@ -11,6 +11,6 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create() {
-		setScreen(new MainGameScreen(this));
+		setScreen(new Box2DScreen(this));
 	}
 }
