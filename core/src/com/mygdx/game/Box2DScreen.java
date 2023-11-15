@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Box2DScreen extends BaseScreen{
@@ -16,8 +17,8 @@ public class Box2DScreen extends BaseScreen{
     private World world;
     private Box2DDebugRenderer renderer;
     private OrthographicCamera camera;
-    private Body body;
-    private Fixture fixture;
+    private Body body,sueloBody;
+    private Fixture fixture,sueloFixture;
 
     public Box2DScreen(MyGdxGame game) {
         super(game);
@@ -43,12 +44,25 @@ public class Box2DScreen extends BaseScreen{
         PolygonShape polygonShape=new PolygonShape();
         polygonShape.setAsBox(1,1);
         fixture=body.createFixture(polygonShape,1);
+
+        BodyDef bodyDef2=createBodyDef2();
+        sueloBody=world.createBody(bodyDef2);
+        PolygonShape polygonShape2=new PolygonShape();
+        polygonShape2.setAsBox(50,0);
+        sueloFixture=sueloBody.createFixture(polygonShape2,1);
     }
 
     private BodyDef createBodyDef(){
         BodyDef def=new BodyDef();
         def.position.set(0,10);
         def.type=BodyDef.BodyType.DynamicBody;
+        return def;
+    }
+
+    private BodyDef createBodyDef2(){
+        BodyDef def=new BodyDef();
+        def.position.set(0,0);
+        def.type=BodyDef.BodyType.StaticBody;
         return def;
     }
 
