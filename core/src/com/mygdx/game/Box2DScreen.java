@@ -17,8 +17,8 @@ public class Box2DScreen extends BaseScreen{
     private World world;
     private Box2DDebugRenderer renderer;
     private OrthographicCamera camera;
-    private Body body,sueloBody;
-    private Fixture fixture,sueloFixture;
+    private Body body,sueloBody, rocaBody;
+    private Fixture fixture,sueloFixture, rocaFixture;
 
     public Box2DScreen(MyGdxGame game) {
         super(game);
@@ -50,6 +50,16 @@ public class Box2DScreen extends BaseScreen{
         PolygonShape polygonShape2=new PolygonShape();
         polygonShape2.setAsBox(50,0);
         sueloFixture=sueloBody.createFixture(polygonShape2,1);
+
+        BodyDef rocBody = createBodyDef3();
+        rocaBody = world.createBody(rocBody);
+        Vector2 [] vertices = new Vector2[3];
+        vertices[0] = new Vector2(-0.5f, -0.5f);
+        vertices[1] = new Vector2(0.5f, -0.5f);
+        vertices[2] = new Vector2(0, 0.5f);
+        PolygonShape shape3 = new PolygonShape();
+        shape3.set(vertices);
+        rocaFixture = rocaBody.createFixture(shape3, 1);
     }
 
     private BodyDef createBodyDef(){
@@ -64,6 +74,13 @@ public class Box2DScreen extends BaseScreen{
         def.position.set(0,0);
         def.type=BodyDef.BodyType.StaticBody;
         return def;
+    }
+
+    private BodyDef createBodyDef3() {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(0.5f, 0.5f);
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        return bodyDef;
     }
 
     @Override
