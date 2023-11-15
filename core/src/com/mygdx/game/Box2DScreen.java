@@ -7,7 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -20,6 +24,8 @@ public class Box2DScreen extends BaseScreen{
     private Body body,sueloBody, rocaBody;
     private Fixture fixture,sueloFixture, rocaFixture;
 
+    private Boolean colisionDetectada=false;
+
     public Box2DScreen(MyGdxGame game) {
         super(game);
     }
@@ -27,18 +33,24 @@ public class Box2DScreen extends BaseScreen{
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if(Gdx.input.justTouched()){
+            saltar();
+        }
         world.step(delta,6,2);
         camera.update();
         renderer.render(world,camera.combined);
+
     }
 
     @Override
     public void show() {
         world=new World(new Vector2(0,-10),true);
         renderer=new Box2DDebugRenderer();
-        camera=new OrthographicCamera(40,20);
+        camera=new OrthographicCamera(32,18);
 //        camera=new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        camera.translate(0,1);
+        camera.translate(0,2);
+
         BodyDef bodyDef=createBodyDef();
         body=world.createBody(bodyDef);
         PolygonShape polygonShape=new PolygonShape();
@@ -88,5 +100,11 @@ public class Box2DScreen extends BaseScreen{
         this.renderer.dispose();
         this.world.dispose();
         world.destroyBody(this.body);
+    }
+
+    private void saltar(){
+        Vector2 posicion=body.getPosition();
+//        body.applyLinearImpulse(0,20,posicion.x,posicion.y,true);
+        body.applyAngularImpulse(20.5f,true);
     }
 }
