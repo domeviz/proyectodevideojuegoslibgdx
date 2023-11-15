@@ -34,7 +34,7 @@ public class Box2DScreen extends BaseScreen{
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(Gdx.input.justTouched()){
+        if(Gdx.input.justTouched() &&colisionDetectada==false){
             saltar();
         }
         world.step(delta,6,2);
@@ -51,6 +51,32 @@ public class Box2DScreen extends BaseScreen{
 //        camera=new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.translate(0,2);
 
+        world.setContactListener(new ContactListener() {
+            @Override
+            public void beginContact(Contact contact) {
+                Fixture fixtureA=contact.getFixtureA();
+                Fixture fixtureB=contact.getFixtureB();
+
+                if(fixtureB==fixture && fixtureA==rocaFixture){
+                    colisionDetectada=true;
+                }
+            }
+
+            @Override
+            public void endContact(Contact contact) {
+
+            }
+
+            @Override
+            public void preSolve(Contact contact, Manifold oldManifold) {
+
+            }
+
+            @Override
+            public void postSolve(Contact contact, ContactImpulse impulse) {
+
+            }
+        });
         BodyDef bodyDef=createBodyDef();
         body=world.createBody(bodyDef);
         PolygonShape polygonShape=new PolygonShape();
@@ -104,7 +130,7 @@ public class Box2DScreen extends BaseScreen{
 
     private void saltar(){
         Vector2 posicion=body.getPosition();
-//        body.applyLinearImpulse(0,20,posicion.x,posicion.y,true);
-        body.applyAngularImpulse(20.5f,true);
+        body.applyLinearImpulse(0,20,posicion.x,posicion.y,true);
+//        body.applyAngularImpulse(20.5f,true);
     }
 }
