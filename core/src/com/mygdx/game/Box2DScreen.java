@@ -36,7 +36,11 @@ public class Box2DScreen extends BaseScreen{
 
         if(Gdx.input.justTouched() &&colisionDetectada==false){
             saltar();
+
         }
+        float velocidadY=body.getLinearVelocity().y;
+        body.setLinearVelocity(5,velocidadY);
+
         world.step(delta,6,2);
         camera.update();
         renderer.render(world,camera.combined);
@@ -102,7 +106,7 @@ public class Box2DScreen extends BaseScreen{
 
     private BodyDef createBodyDef(){
         BodyDef def=new BodyDef();
-        def.position.set(0,10);
+        def.position.set(0,0);
         def.type=BodyDef.BodyType.DynamicBody;
         return def;
     }
@@ -116,7 +120,7 @@ public class Box2DScreen extends BaseScreen{
 
     private BodyDef createBodyDef3() {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(0.5f, 0.5f);
+        bodyDef.position.set(11f, 0.5f);
         bodyDef.type = BodyDef.BodyType.StaticBody;
         return bodyDef;
     }
