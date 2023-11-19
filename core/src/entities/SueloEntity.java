@@ -12,20 +12,20 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class PlayerEntity extends Actor {
+public class SueloEntity extends Actor {
 
     private Texture texture;
     private Body body;
     private World world;
     private Fixture fixture;
 
-    public PlayerEntity(World world, Texture texture, Vector2 position) {
+    public SueloEntity(World world, Texture texture, Vector2 position) {
         this.world = world;
         this.texture = texture;
 
         BodyDef def=new BodyDef();
         def.position.set(position);
-        def.type=BodyDef.BodyType.DynamicBody;
+        def.type=BodyDef.BodyType.StaticBody;
 
         body= world.createBody(def);
 
@@ -41,6 +41,6 @@ public class PlayerEntity extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x * pixelInMeter,body.getPosition().y * pixelInMeter);
-        batch.draw(texture,getX(),getY(),getWidth(),getHeight());
+        batch.draw(texture,getX(),getY(),getWidth()*4,getHeight()*2);
     }
 }

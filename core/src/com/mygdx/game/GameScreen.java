@@ -9,12 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import entities.PlayerEntity;
+import entities.SueloEntity;
 
 public class GameScreen extends BaseScreen{
 
     private Stage stage;
     private World world;
     private PlayerEntity player;
+    private SueloEntity suelo;
 
     public GameScreen(MyGdxGame game) {
         super(game);
@@ -26,8 +28,12 @@ public class GameScreen extends BaseScreen{
     @Override
     public void show() {
         Texture playerTexture=game.getManager().get("dinosaurio.png");
-        player=new PlayerEntity(world,playerTexture,new Vector2(1,2));
+        player=new PlayerEntity(world,playerTexture,new Vector2(1,4));
         stage.addActor(player);
+
+        Texture sueloTexture=game.getManager().get("suelo.jpg");
+        suelo=new SueloEntity(world,sueloTexture,new Vector2(0,0));
+        stage.addActor(suelo);
     }
 
     @Override
@@ -39,7 +45,7 @@ public class GameScreen extends BaseScreen{
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(1,0,0,1);
+        Gdx.gl.glClearColor(0.7f,0.1f,0.3f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();
