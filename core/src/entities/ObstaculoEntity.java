@@ -41,6 +41,6 @@ public class ObstaculoEntity extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x * pixelInMeter,body.getPosition().y * pixelInMeter);
-        batch.draw(texture,getX(),getY(),getWidth(),getHeight());
+        batch.draw(texture,getX(),getY(),getWidth()*0.5f,getHeight()*0.5f);
     }
 }

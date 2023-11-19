@@ -30,15 +30,15 @@ public class GameScreen extends BaseScreen{
 
     @Override
     public void show() {
-        Texture playerTexture=game.getManager().get("dinosaurio.png");
+        Texture playerTexture=game.getManager().get("aurorus.png");
         player=new PlayerEntity(world,playerTexture,new Vector2(1,4));
         stage.addActor(player);
 
-        Texture sueloTexture=game.getManager().get("suelo.jpg");
+        Texture sueloTexture=game.getManager().get("suelonieve.png");
         suelo=new SueloEntity(world,sueloTexture,new Vector2(0,0));
         stage.addActor(suelo);
 
-        Texture obstaculoTexture=game.getManager().get("cactus.png");
+        Texture obstaculoTexture=game.getManager().get("cactusnieve.png");
         obstaculo=new ObstaculoEntity(world,obstaculoTexture,new Vector2(4,1));
         stage.addActor(obstaculo);
     }

@@ -23,9 +23,9 @@ public class MyGdxGame extends Game {
 	@Override
 	public void create() {
 		manager=new AssetManager();
-		manager.load("dinosaurio.png",Texture.class);
-		manager.load("cactus.png",Texture.class);
-		manager.load("suelo.jpg",Texture.class);
+		manager.load("aurorus.png",Texture.class);
+		manager.load("cactusnieve.png",Texture.class);
+		manager.load("suelonieve.png",Texture.class);
 		manager.finishLoading();
 		setScreen(new GameScreen(this));
 	}
