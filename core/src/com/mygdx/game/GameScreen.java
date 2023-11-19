@@ -31,7 +31,7 @@ public class GameScreen extends BaseScreen{
     @Override
     public void show() {
         Texture playerTexture=game.getManager().get("aurorus.png");
-        player=new PlayerEntity(world,playerTexture,new Vector2(1,4));
+        player=new PlayerEntity(world,playerTexture,new Vector2(1,1));
         stage.addActor(player);
 
         Texture sueloTexture=game.getManager().get("suelonieve.png");
@@ -52,7 +52,7 @@ public class GameScreen extends BaseScreen{
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0.7f,0.1f,0.3f,1);
+        Gdx.gl.glClearColor(0.5f,0.9f,0.98f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();
