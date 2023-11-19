@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import entities.ObstaculoEntity;
 import entities.PlayerEntity;
 import entities.SueloEntity;
 
@@ -17,6 +18,8 @@ public class GameScreen extends BaseScreen{
     private World world;
     private PlayerEntity player;
     private SueloEntity suelo;
+
+    private ObstaculoEntity obstaculo;
 
     public GameScreen(MyGdxGame game) {
         super(game);
@@ -34,6 +37,10 @@ public class GameScreen extends BaseScreen{
         Texture sueloTexture=game.getManager().get("suelo.jpg");
         suelo=new SueloEntity(world,sueloTexture,new Vector2(0,0));
         stage.addActor(suelo);
+
+        Texture obstaculoTexture=game.getManager().get("cactus.png");
+        obstaculo=new ObstaculoEntity(world,obstaculoTexture,new Vector2(4,1));
+        stage.addActor(obstaculo);
     }
 
     @Override

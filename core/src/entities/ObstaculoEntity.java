@@ -12,20 +12,20 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class PlayerEntity extends Actor {
+public class ObstaculoEntity extends Actor {
 
     private Texture texture;
     private Body body;
     private World world;
     private Fixture fixture;
 
-    public PlayerEntity(World world, Texture texture, Vector2 position) {
+    public ObstaculoEntity(World world, Texture texture, Vector2 position) {
         this.world = world;
         this.texture = texture;
 
         BodyDef def=new BodyDef();
         def.position.set(position);
-        def.type=BodyDef.BodyType.DynamicBody;
+        def.type=BodyDef.BodyType.StaticBody;
 
         body= world.createBody(def);
 

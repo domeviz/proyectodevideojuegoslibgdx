@@ -30,17 +30,17 @@ public class SueloEntity extends Actor {
         body= world.createBody(def);
 
         PolygonShape polygonShape=new PolygonShape();
-        polygonShape.setAsBox(1,1);
+        polygonShape.setAsBox(1,0.5f);
         fixture=body.createFixture(polygonShape,1);
 
         polygonShape.dispose();
 
-        setSize(pixelInMeter, pixelInMeter);
+        setSize(pixelInMeter*5, pixelInMeter);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x * pixelInMeter,body.getPosition().y * pixelInMeter);
-        batch.draw(texture,getX(),getY(),getWidth()*4,getHeight()*2);
+        batch.draw(texture,getX(),getY(),getWidth(),getHeight());
     }
 }
