@@ -46,7 +46,7 @@ public class ObstaculoEntity extends Actor {
         body= world.createBody(def);
 
         PolygonShape polygonShape=new PolygonShape();
-        polygonShape.setAsBox(0.5f,0.5f);
+        polygonShape.setAsBox(0.25f,0.25f);
         fixture=body.createFixture(polygonShape,1);
         fixture.setUserData("obstaculo");
 
@@ -57,7 +57,7 @@ public class ObstaculoEntity extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        setPosition(body.getPosition().x * pixelInMeter,body.getPosition().y * pixelInMeter);
+        setPosition((body.getPosition().x-1) * pixelInMeter,body.getPosition().y * pixelInMeter);
         batch.draw(texture,getX(),getY(),getWidth()*0.5f,getHeight()*0.5f);
     }
 

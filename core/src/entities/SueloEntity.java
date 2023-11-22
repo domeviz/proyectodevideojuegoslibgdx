@@ -30,7 +30,7 @@ public class SueloEntity extends Actor {
         body= world.createBody(def);
 
         PolygonShape polygonShape=new PolygonShape();
-        polygonShape.setAsBox(1,0.5f);
+        polygonShape.setAsBox(5,0.5f);
         fixture=body.createFixture(polygonShape,1);
         fixture.setUserData("suelo");
 
