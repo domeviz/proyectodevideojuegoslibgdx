@@ -72,6 +72,8 @@ public class GameScreen extends BaseScreen{
         listaSuelos.add(new SueloEntity(world,sueloTexture,new Vector2(15,0)));
         listaSuelos.add(new SueloEntity(world,sueloTexture,new Vector2(20,0)));
         listaSuelos.add(new SueloEntity(world,sueloTexture,new Vector2(25,0)));
+        listaSuelos.add(new SueloEntity(world,sueloTexture,new Vector2(30,0)));
+        listaSuelos.add(new SueloEntity(world,sueloTexture,new Vector2(35,0)));
 
         for (SueloEntity suelo : listaSuelos){
             stage.addActor(suelo);
@@ -83,6 +85,8 @@ public class GameScreen extends BaseScreen{
         listaObstaculos.add(new ObstaculoEntity(world,obstaculoTexture,new Vector2(15,1)));
         listaObstaculos.add(new ObstaculoEntity(world,obstaculoTexture,new Vector2(20,1)));
         listaObstaculos.add(new ObstaculoEntity(world,obstaculoTexture,new Vector2(25,1)));
+        listaObstaculos.add(new ObstaculoEntity(world,obstaculoTexture,new Vector2(30,1)));
+        listaObstaculos.add(new ObstaculoEntity(world,obstaculoTexture,new Vector2(35,1)));
 
         for (ObstaculoEntity obstaculo : listaObstaculos){
             stage.addActor(obstaculo);
@@ -158,8 +162,8 @@ public class GameScreen extends BaseScreen{
 
         stage.act();
         world.step(delta,6,2);
-        camera.update();
-        renderer.render(world,camera.combined);
+//        camera.update();
+//        renderer.render(world,camera.combined);
         stage.draw();
     }
 
