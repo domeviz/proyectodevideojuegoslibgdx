@@ -19,6 +19,22 @@ public class ObstaculoEntity extends Actor {
     private World world;
     private Fixture fixture;
 
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
     public ObstaculoEntity(World world, Texture texture, Vector2 position) {
         this.world = world;
         this.texture = texture;
@@ -32,6 +48,7 @@ public class ObstaculoEntity extends Actor {
         PolygonShape polygonShape=new PolygonShape();
         polygonShape.setAsBox(0.5f,0.5f);
         fixture=body.createFixture(polygonShape,1);
+        fixture.setUserData("obstaculo");
 
         polygonShape.dispose();
 
@@ -42,5 +59,10 @@ public class ObstaculoEntity extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x * pixelInMeter,body.getPosition().y * pixelInMeter);
         batch.draw(texture,getX(),getY(),getWidth()*0.5f,getHeight()*0.5f);
+    }
+
+    public void liberar(){
+        body.destroyFixture(fixture);
+        world.destroyBody(body);
     }
 }

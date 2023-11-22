@@ -19,19 +19,46 @@ public class PlayerEntity extends Actor {
     private World world;
     private Fixture fixture;
 
+    private Boolean alive=true;
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public Fixture getFixture() {
+        return fixture;
+    }
+
+    public void setFixture(Fixture fixture) {
+        this.fixture = fixture;
+    }
+
+    public Boolean getAlive() {
+        return alive;
+    }
+
+    public void setAlive(Boolean alive) {
+        this.alive = alive;
+    }
+
     public PlayerEntity(World world, Texture texture, Vector2 position) {
         this.world = world;
         this.texture = texture;
 
         BodyDef def=new BodyDef();
         def.position.set(position);
-        def.type=BodyDef.BodyType.KinematicBody;
+        def.type=BodyDef.BodyType.DynamicBody;
 
         body= world.createBody(def);
 
         PolygonShape polygonShape=new PolygonShape();
         polygonShape.setAsBox(0.5f,0.5f);
         fixture=body.createFixture(polygonShape,1);
+        fixture.setUserData("player");
 
         polygonShape.dispose();
 
@@ -45,5 +72,10 @@ public class PlayerEntity extends Actor {
         body.setLinearVelocity(4,velocidadY);
         setPosition((body.getPosition().x-1)*pixelInMeter,body.getPosition().y*pixelInMeter);
         batch.draw(texture,getX(),getY(),getWidth(),getHeight());
+    }
+
+    public void liberar(){
+        body.destroyFixture(fixture);
+        world.destroyBody(body);
     }
 }
